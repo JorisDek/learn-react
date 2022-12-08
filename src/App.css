@@ -1,0 +1,62 @@
+#root {
+  box-sizing: border-box;
+  font-family: Inter;
+}
+
+h5 {
+  margin: 0;
+}
+
+.mon-list {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 1rem;
+}
+
+.mon {
+  box-shadow: 0 0 10px rgba(0,0,0,0.15);
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.mon-types {
+  display: flex;
+  align-items: center;
+}
+
+.mon-type {
+  border-radius: 5px;
+  padding: 0.2rem 0.5rem;
+  color: white;
+}
+
+.grass {
+  background-color: forestgreen;
+}
+
+.poison {
+  background-color: purple;
+}
+
+.fire {
+  background-color: coral;
+}
+
+.flying {
+  background-color: cadetblue;
+}
+
+.water {
+  background-color: cornflowerblue;
+}
+
+.bug {
+  background-color: olive;
+}
+
+.normal {
+ background-color: lightgray;
+}
+
+
