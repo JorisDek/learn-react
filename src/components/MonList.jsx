@@ -1,30 +1,34 @@
 import {useState, useEffect} from "react";
 import api from '../api/pokemon'
 import MonItem from "./MonItem";
+import axios from "axios";
 
 const MonList = () => {
     const [mons, setMons] = useState([])
     const [fetchError, setFetchError] = useState(null)
     const [isLoadingMons, setIsLoadingMons] = useState(null)
+    const [nextUrl, setNexturl] = useState('')
 
+    const fetchMons = async (url) => {
+        setIsLoadingMons(true)
+
+        try {
+            const response = await axios.get(url)
+            setMons(response.data.results)
+            console.log(response.data)
+            setNexturl(response.data.next)
+
+        } catch (err) {
+            console.log(err.message)
+            setFetchError(err.message)
+            setMons([])
+        } finally {
+            setIsLoadingMons(false)
+        }
+    }
 
     useEffect(() => {
-        const fetchMons = async () => {
-            setIsLoadingMons(true)
-
-            try {
-                const response = await api.get('/pokemon')
-                setMons(response.data.results)
-            } catch (err) {
-                console.log(err.message)
-                setFetchError(err.message)
-                setMons([])
-            } finally {
-                setIsLoadingMons(false)
-            }
-        }
-
-        fetchMons()
+        fetchMons('https://pokeapi.co/api/v2/pokemon')
     }, [])
 
     return (
@@ -36,6 +40,9 @@ const MonList = () => {
                     )
                 })
             }
+            <button onClick={(e) => {
+                fetchMons(nextUrl)
+            }}>Meer</button>
         </div>
     )
 }
