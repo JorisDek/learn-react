@@ -1,14 +1,15 @@
 import axios from "axios";
-import {useEffect, useState} from "react";
+import {lazy, Suspense, useEffect, useState} from "react";
 import MonType from "./MonType";
-import MonImage from "./MonImage.jsx";
+import {Link} from "react-router-dom";
+// import MonImage from "./MonImage";
+const MonImage = lazy(() => import('./MonImage'))
 
 
 const MonItem = ({mon}) => {
     const [monData, setMonData] = useState({})
     const [isLoading, setIsLoading] = useState(null)
     const [fetchError, setFetchError] = useState(null)
-    const [types, setTypes] = useState([])
 
 
     useEffect(() => {
@@ -49,10 +50,12 @@ const MonItem = ({mon}) => {
             {!isLoading && monData &&
                 <div className="mon">
                     {monData.sprites &&
-                        <MonImage image={monData.sprites.front_default} />
+                        <Suspense fallback={<div></div>}>
+                            <MonImage image={monData.sprites.front_default} />
+                        </Suspense>
                     }
 
-                    <h5>{monData.id} - {monData.name}</h5>
+                    <Link to={`/pokemon/${monData.id}`}>{monData.id} - {monData.name}</Link>
 
                     {monData.types &&
                         <div className="mon-types">
