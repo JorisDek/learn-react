@@ -1,8 +1,10 @@
+import Nav from 'react-bootstrap/Nav';
+
 const Navbar = () => {
   return (
-      <div className="navbar">
+      <Nav className="navbar">
         <h1>nav</h1>
-      </div>
+      </Nav>
   );
 };
 

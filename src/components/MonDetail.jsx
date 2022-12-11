@@ -1,50 +1,37 @@
 import {useParams} from "react-router-dom";
 import {useEffect, useState} from 'react'
-import axios from "axios";
+import useAxios from "../hooks/useAxios"
+import axios from "../api/pokemon"
+// import MonImage from "./MonImage";
+import Image from 'react-bootstrap/Image'
 
 const MonDetail = () => {
   const {id} = useParams()
   const [isLoading, setIsLoading] = useState()
   const [fetchError, setFetchError] = useState()
-  const [monData, setMonData] = useState()
 
-  useEffect(() => {
-    let isMounted = true
-    const source = axios.CancelToken.source()
-
-    const fetchMon = async () => {
-      setIsLoading(true)
-      try {
-        const response = await axios.get(`https://pokeapi.co/api/v2/pokemon/`+id, {
-          cancelToken: source.token
-        })
-
-        if (isMounted) {
-          setMonData(response.data)
-          setFetchError(null)
+  const [mon, error, loading] = useAxios({
+    axiosInstance: axios,
+    method: 'GET',
+    url: `/pokemon/${id}`,
+    requestConfig: {
+        params: {
+            limit: 50
         }
-        // console.log(response.data)
-      } catch (err) {
-        if (isMounted) {
-          setFetchError(err.message)
-          setMonData({})
-        }
-        // console.log(err.message)
-
-      } finally {
-        isMounted && setIsLoading(false)
-        // console.log('finally')
-      }
     }
-
-    fetchMon()
-
-  }, [])
+})
 
   return (
       <>
-        {monData &&
-          monData.name}
+        {loading && <p>Loading</p>}
+        {!loading && error && <p>{error}</p>}
+
+        {!loading && !error && mon.name && mon.sprites &&
+          <>
+            <h1>{mon.name}</h1>
+            <Image src={mon.sprites.other.home.front_default} />
+          </>
+        }
       </>
   )
 }
