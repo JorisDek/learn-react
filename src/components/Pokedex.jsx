@@ -20,14 +20,8 @@ const Pokedex = () => {
 
     return (
         <>
-            <aside>
-                <h1>Pokedex</h1>
-
-                
-            </aside>
             <main>
-                <h1>Main</h1>
-
+                <h1>Pokedexes</h1>
                 {loading && <p>Loading</p>}
 
                 {!loading && error && <p>{error}!!</p>}

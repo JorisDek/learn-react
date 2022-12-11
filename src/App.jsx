@@ -5,6 +5,7 @@ import MonList from "./components/MonList.jsx";
 import MonDetail from "./components/MonDetail";
 import Pokedex from "./components/Pokedex"
 import PokedexDetail from "./components/PokedexDetail"
+import Types from "./components/Types"
 import Missing from "./components/Missing";
 import {Routes, Route} from "react-router-dom";
 
@@ -25,6 +26,7 @@ function App() {
           <Route index element={<MonList />}/>
           <Route path="/pokemon/:id" element={<MonDetail />} />
         </Route>
+        <Route index path="types" element={<Types />} />
         <Route path="*" element={<Missing/>} />
       </Route>
     </Routes>
