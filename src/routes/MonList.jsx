@@ -3,7 +3,7 @@ import api from '../api/pokemon'
 // import MonItem from "./MonItem";
 import axios from "axios";
 
-const MonItem = lazy(() => import('./MonItem'))
+const MonItem = lazy(() => import('../components/MonItem'))
 
 const MonList = () => {
     const [mons, setMons] = useState([])

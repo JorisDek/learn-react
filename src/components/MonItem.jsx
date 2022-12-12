@@ -16,6 +16,7 @@ import ListGroup from 'react-bootstrap/ListGroup';
 
 
 const MonItem = ({mon}) => {
+    console.log(mon)
     // const [monData, setMonData] = useState({})
     const [isLoading, setIsLoading] = useState(null)
     const [fetchError, setFetchError] = useState(null)
@@ -23,7 +24,7 @@ const MonItem = ({mon}) => {
     const [monData, error, loading] = useAxios({
         axiosInstance: axios,
         method: 'GET',
-        url: `/pokemon/${mon.entry_number}`,
+        url: `/pokemon/${mon.pokemon_species.name}`,
         requestConfig: {
             params: {
                 limit: 50
@@ -66,43 +67,40 @@ const MonItem = ({mon}) => {
     return (
         <>
             {!isLoading && monData &&
-                <Col>
-                    <Card>
-                        {monData.sprites &&
-                            <Suspense fallback={
-                                <Figure>
-                                    <Figure.Image
-                                        width={180}
-                                        height={180}
-                                        alt="180x180"
-                                        src="holder.js/180x180"
-                                    />
-                                </Figure>
-                            }>
-                                {/* <MonImage image={monData.sprites.front_default} /> */}
-                                <Card.Img variant="top" src={monData.sprites.front_default} />
-                            </Suspense>
+                <Card>
+                    <Card.Header as="h5">#{monData.id} - {(monData.name)}</Card.Header>
+                    {monData.sprites &&
+                        <Suspense fallback={
+                            <Figure>
+                                <Figure.Image
+                                    width={180}
+                                    height={180}
+                                    alt="180x180"
+                                    src="holder.js/180x180"
+                                />
+                            </Figure>
+                        }>
+                            {/* <MonImage image={monData.sprites.front_default} /> */}
+                            <Card.Img variant="top" src={monData.sprites.front_default} />
+                        </Suspense>
+                    }
+                    <Card.Body>
+                        {/* <Link to={`/pokemon/${monData.id}`}></Link> */}
+                        <Card.Text> 
+                            
+                            {/* <Button href={`/pokemon/${monData.id}`} variant="primary" className="stretched-link">Go somewhere</Button> */}
+                        </Card.Text>
+                        <Card.Link href={`/pokemon/${monData.id}`} className="stretched-link"></Card.Link>
+                    </Card.Body>
+                    {monData.types &&
+                            monData.types.map((monType) => {
+                                return (
+                                    // <ListGroup.Item key={monType.slot}>{monType.type.name}</ListGroup.Item>
+                                    <MonType key={monType.slot} type={monType.type}/>
+                                )
+                            })
                         }
-                        <Card.Body>
-                            <Card.Title>{monData.id} - {monData.name}</Card.Title>
-                            {/* <Link to={`/pokemon/${monData.id}`}></Link> */}
-                            <Card.Text> 
-                                
-                                <Button href={`/pokemon/${monData.id}`} variant="primary" className="stretched-link">Go somewhere</Button>
-                            </Card.Text>
-                        </Card.Body>
-                        <ListGroup className="list-group-flush">
-                            {monData.types &&
-                                    monData.types.map((monType) => {
-                                        return (
-                                            <ListGroup.Item key={monType.slot}>{monType.type.name}</ListGroup.Item>
-                                            // <MonType  type={monType.type}/>
-                                        )
-                                    })
-                                }
-                        </ListGroup>
-                    </Card>
-                </Col>
+                </Card>
             }
         </>
     )

@@ -1,11 +1,11 @@
 import './App.scss'
-import Main from "./components/Main"
-import Layout from "./components/Layout";
-import MonList from "./components/MonList.jsx";
-import MonDetail from "./components/MonDetail";
-import Pokedex from "./components/Pokedex"
-import PokedexDetail from "./components/PokedexDetail"
-import Types from "./components/Types"
+import Main from "./routes/Main"
+import Layout from "./components/base/Layout";
+import MonList from "./routes/MonList.jsx";
+import MonDetail from "./routes/MonDetail";
+import Pokedex from "./routes/Pokedex"
+import PokedexDetail from "./routes/PokedexDetail"
+import Types from "./routes/Types"
 import Missing from "./components/Missing";
 import {Routes, Route} from "react-router-dom";
 

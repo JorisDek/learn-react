@@ -1,6 +1,6 @@
 import useAxios from '../hooks/UseAxios.jsx'
 import axios from '../api/pokemon'
-import DexItem from "./DexItem"
+import DexItem from "../components/DexItem"
 import PokedexDetail from "./PokedexDetail"
 
 const Pokedex = () => {
