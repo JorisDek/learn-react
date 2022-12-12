@@ -1,21 +1,21 @@
 @import "../node_modules/bootstrap/scss/bootstrap";
 
-
-nav {
- 
-}
-
-aside {
-  
-}
-
-main {
-  
-}
-
-footer {
-  
-}
+//
+//nav {
+//
+//}
+//
+//aside {
+//
+//}
+//
+//main {
+//
+//}
+//
+//footer {
+//
+//}
 
 h5 {
   margin: 0;
@@ -73,4 +73,48 @@ h5 {
  background-color: lightgray;
 }
 
+.electric {
+  background-color: gold;
+  color: black;
+}
 
+.ground {
+  background-color: darkkhaki;
+}
+
+.fairy {
+  background-color: lightpink;
+  color: black;
+}
+
+.fighting {
+  background-color: brown;
+}
+
+.psychic {
+  background-color: hotpink;
+}
+
+.steel {
+  background-color: steelblue;
+}
+
+.ice {
+  background-color: lightskyblue;
+}
+
+.dark {
+  background-color: black;
+}
+
+.rock {
+  background-color: goldenrod;
+}
+
+.ghost {
+  background-color: rebeccapurple;
+}
+
+.dragon {
+  background-color: darkblue;
+}

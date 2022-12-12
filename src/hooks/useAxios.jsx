@@ -14,7 +14,7 @@ const useAxios = (configObj) => {
   const effectRan = useRef(false)
 
   useEffect(() => {
-    console.log('mounted')
+    // console.log('mounted')
     const controller = new AbortController()
 
     if (effectRan.current === true) {
@@ -38,7 +38,7 @@ const useAxios = (configObj) => {
     }
 
     return () => {
-      console.log('effect ran')
+      // console.log('effect ran')
       effectRan.current = true
       controller.abort()
     }

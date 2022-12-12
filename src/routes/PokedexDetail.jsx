@@ -36,6 +36,8 @@ const PokedexDetail = () => {
         })
     }
 
+    console.log(filtered)
+
     return (
         <>
             {loading && <p>Loading</p>}
@@ -51,12 +53,11 @@ const PokedexDetail = () => {
                         {filtered.map((mon) => {    
                             // console.log(mon)                   
                             return (
-                                <Col className="mb-4" key={mon.name}>
+                                <Col className="mb-4" key={mon.pokemon_species.name}>
                                     <Suspense fallback={<div>Loading</div>}>
                                         <MonItem mon={mon} />
                                     </Suspense>
                                 </Col>
-                                
                             )
                         })}
                     </Row>
